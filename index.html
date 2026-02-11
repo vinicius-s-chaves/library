@@ -8,5 +8,30 @@
 </head>
 <body>
     <h1>Library</h1>
+    <form action="./script.js" method="post">
+        <fieldset>
+            <legend>Add new book</legend>
+            <p>
+                <label for="inTitle">Title:</label>
+                <input type="text" id="inTitle" name="title">
+            </p>
+            <p>
+                <label for="inAuthor">Author:</label>
+                <input type="text" id="inAuthor" name="author">
+            </p>
+            <p>
+                <label for="inPages">Number of pages:</label>
+                <input type="number" id="inPages" name="pages">
+            </p>
+            <p>
+                <h4>Readed?</h4>
+                <label for="readed">yes</label>
+                <input type="radio" id="readed" name="read" value="yes">
+                <label for="notReaded">no</label>
+                <input type="radio" id="notReaded" name="read" value="no">
+            </p>
+            <button type="submit">New Book</button>
+        </fieldset>
+    </form>
 </body>
 </html>
