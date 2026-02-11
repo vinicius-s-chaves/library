@@ -1,4 +1,4 @@
-const body = document.querySelector('body')
+const booksList = document.querySelector('#booksList')
 const bookForm = document.querySelector('#bookForm')
 const myLibrary = []
 
@@ -17,10 +17,11 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks() {
+    booksList.textContent = ''
     for (let book of myLibrary) {
         let displayedBook = document.createElement('div')
         displayedBook.textContent = book.info
-        body.appendChild(displayedBook)
+        booksList.appendChild(displayedBook)
     }
 }
 
@@ -37,4 +38,5 @@ function submitBookInfo(e) {
     e.preventDefault()
 }
 
+addBookToLibrary('Harry Potter', 'J.K. Rowlling', 500, 'yes')
 displayBooks()
