@@ -22,19 +22,28 @@ function displayBooks() {
         let displayedBook = document.createElement('div')
         displayedBook.textContent = book.info
         
-        let btnRemoveBook = document.createElement('button')
-        btnRemoveBook.textContent = 'Remove Book'
-        btnRemoveBook.dataset.id = book.id
-        btnRemoveBook.addEventListener('click', removeBook)
-
-        let readCheck = document.createElement('input')
-        readCheck.type = 'checkbox'
-        readCheck.checked = book.readStatus
+        let btnRemoveBook = createRemoveButton(book)
+        let readCheck = createReadCheck(book)
 
         displayedBook.appendChild(readCheck)
         displayedBook.appendChild(btnRemoveBook)
         booksList.appendChild(displayedBook)
     }
+}
+
+function createRemoveButton(book) {
+    let button = document.createElement('button')
+    button.textContent = 'Remove Book'
+    button.dataset.id = book.id
+    button.addEventListener('click', removeBook)
+    return button
+}
+
+function createReadCheck(book) {
+    let checkbox = document.createElement('input')
+    checkbox.type = 'checkbox'
+    checkbox.checked = book.readStatus
+    return checkbox
 }
 
 bookForm.addEventListener('submit', submitBookInfo)
