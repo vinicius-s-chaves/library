@@ -2,13 +2,13 @@ const booksList = document.querySelector('#booksList')
 const bookForm = document.querySelector('#bookForm')
 let myLibrary = []
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, readStatus) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
+    this.readStatus = readStatus
     this.id = crypto.randomUUID()
-    this.info = `${title}, by ${author}, ${pages} pages. Read: ${read}`
+    this.info = `${title}, by ${author}, ${pages} pages. Readed:`
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -27,6 +27,11 @@ function displayBooks() {
         btnRemoveBook.dataset.id = book.id
         btnRemoveBook.addEventListener('click', removeBook)
 
+        let readCheck = document.createElement('input')
+        readCheck.type = 'checkbox'
+        readCheck.checked = book.readStatus
+
+        displayedBook.appendChild(readCheck)
         displayedBook.appendChild(btnRemoveBook)
         booksList.appendChild(displayedBook)
     }
@@ -38,9 +43,9 @@ function submitBookInfo(e) {
     let title = document.querySelector('#inTitle').value
     let author = document.querySelector('#inAuthor').value
     let pages = document.querySelector('#inPages').value
-    // let read = document.querySelector('#readed').value
+    let readStatus = document.querySelector('#inRead').checked
 
-    addBookToLibrary(title, author, pages, 'yes')
+    addBookToLibrary(title, author, pages, readStatus)
     displayBooks()
     e.preventDefault()
 }
@@ -50,5 +55,5 @@ function removeBook() {
     displayBooks()
 }
 
-addBookToLibrary('Harry Potter', 'J.K. Rowlling', 500, 'yes')
+addBookToLibrary('Harry Potter', 'J.K. Rowlling', 500, true)
 displayBooks()
