@@ -1,6 +1,6 @@
 const booksList = document.querySelector('#booksList')
 const bookForm = document.querySelector('#bookForm')
-const myLibrary = []
+let myLibrary = []
 
 function Book(title, author, pages, read) {
     this.title = title
@@ -21,6 +21,13 @@ function displayBooks() {
     for (let book of myLibrary) {
         let displayedBook = document.createElement('div')
         displayedBook.textContent = book.info
+        
+        let btnRemoveBook = document.createElement('button')
+        btnRemoveBook.textContent = 'Remove Book'
+        btnRemoveBook.dataset.id = book.id
+        btnRemoveBook.addEventListener('click', removeBook)
+
+        displayedBook.appendChild(btnRemoveBook)
         booksList.appendChild(displayedBook)
     }
 }
@@ -36,6 +43,11 @@ function submitBookInfo(e) {
     addBookToLibrary(title, author, pages, 'yes')
     displayBooks()
     e.preventDefault()
+}
+
+function removeBook() {
+    myLibrary = myLibrary.filter((book) => book.id != this.dataset.id)
+    displayBooks()
 }
 
 addBookToLibrary('Harry Potter', 'J.K. Rowlling', 500, 'yes')
