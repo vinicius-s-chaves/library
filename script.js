@@ -2,13 +2,15 @@ const booksList = document.querySelector('#booksList')
 const bookForm = document.querySelector('#bookForm')
 let myLibrary = []
 
-function Book(title, author, pages, readStatus) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.readStatus = readStatus
-    this.id = crypto.randomUUID()
-    this.info = `${title}, by ${author}, ${pages} pages. Readed:`
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.readStatus = readStatus
+        this.id = crypto.randomUUID()
+        this.info = `${title}, by ${author}, ${pages} pages. Readed:`
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
